@@ -133,4 +133,26 @@ class MainActivity : AppCompatActivity() {
            mathematicalOperation.text = number_1 + Operation + number_2
        }
    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("number_1", number_1)
+        outState.putString("number_2", number_2)
+        outState.putFloat("Operation_result", Operation_result)
+        outState.putString("Operation", Operation)
+
+    }
+    override fun onRestoreInstanceState(savedInstanceState: Bundle){
+        super.onRestoreInstanceState(savedInstanceState)
+        number_1= savedInstanceState.getString("number_1", number_1)
+        number_2 = savedInstanceState.getString("number_2", number_2)
+    Operation_result= savedInstanceState.getFloat("Operation_result", Operation_result)
+    Operation= savedInstanceState.getString("Operation", Operation)
+        if(Operation == ""){
+            mathematicalOperation.text = number_1
+        }else {
+            mathematicalOperation.text = number_1 + Operation + number_2
+        }
+
+    }
+
 }
